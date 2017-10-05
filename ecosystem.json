@@ -27,7 +27,7 @@
       "user" : 'root',
       "host" : '192.168.1.117',
       "ref"  : 'origin/master',
-      "repo" : 'https://gitee.com/wolfdong7/node_bushu',
+      "repo" : 'git@github.com:wolfdong7/node_bushu.git',
       "path" : '/var/www/node_bushu/production',
       'post-deploy' : 'npm install && pm2 reload ecosystem.json --env production',
 	  "env"  : {
