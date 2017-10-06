@@ -28,8 +28,7 @@ module.exports = {
       host : '192.168.1.117',
       ref  : 'origin/master',
       repo : 'https://github.com/wolfdong7/node_bushu',
-      path : '/var/www/node_bushu/production',
-      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+      path : '/var/www/node_bushu/production'      
     },
     dev : {
       user : 'root',
