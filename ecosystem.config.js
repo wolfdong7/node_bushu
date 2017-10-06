@@ -1,32 +1,52 @@
-{
+module.exports = {
   /**
    * Application configuration section
-   * PM2 - Application Declaration
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
    */
   apps : [
+
     // First application
     {
-      name      : 'node_bushu',
-      script    : 'server.js',
+      name      : 'API',
+      script    : 'app.js',
       env: {
-        COMMON_VARIABLE: "true"
+        COMMON_VARIABLE: 'true'
       },
       env_production : {
-        NODE_ENV: "production"
+        NODE_ENV: 'production'
       }
+    },
+
+    // Second application
+    {
+      name      : 'WEB',
+      script    : 'web.js'
     }
   ],
+
   /**
    * Deployment section
-   * PM2 - Deployment
+   * http://pm2.keymetrics.io/docs/usage/deployment/
    */
   deploy : {
     production : {
-      user: "root",
-      host: "192.168.1.117",
-      ref: "origin/master",
-      repo: "git@github.com:wolfdong7/node_bushu.git",
-      path: "/home/yishi/www/production"      
+      user : 'node',
+      host : '212.83.163.1',
+      ref  : 'origin/master',
+      repo : 'git@github.com:repo.git',
+      path : '/var/www/production',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
+    },
+    dev : {
+      user : 'node',
+      host : '212.83.163.1',
+      ref  : 'origin/master',
+      repo : 'git@github.com:repo.git',
+      path : '/var/www/development',
+      'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env dev',
+      env  : {
+        NODE_ENV: 'dev'
+      }
     }
   }
-}
+};
